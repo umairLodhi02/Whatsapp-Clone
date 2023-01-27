@@ -1,20 +1,25 @@
+import AccountBar from "../Topbar/AccountBar";
 import "./sidebar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faUser } from "@fortawesome/free-solid-svg-icons";
+
 const Sidebar = ({ data, handleActiveChat, activeChat }) => {
   return (
     <div className="sidebar">
+      <AccountBar />
       {data.map((v) => (
-        <div className="contact_box">
+        <div
+          className={`contact_box ${
+            activeChat && activeChat.chatId === v.chatId ? "active" : ""
+          }`}
+          key={v.chatId}
+          onClick={() => handleActiveChat(v.chatId)}
+        >
           <div className="img_container">
-            <FontAwesomeIcon icon={faUser} />
+            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="" />
           </div>
-          <h3
-            className={activeChat && activeChat.id === v.id ? "active" : ""}
-            onClick={() => handleActiveChat(v.id)}
-          >
-            {v.id}
-          </h3>
+          <div className="text_container">
+            <h3>{v.chatId}</h3>
+            <p>{v.chatBody[v.chatBody.length - 1].msgText}</p>
+          </div>
         </div>
       ))}
     </div>

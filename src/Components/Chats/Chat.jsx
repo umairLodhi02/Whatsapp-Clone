@@ -1,4 +1,4 @@
 const Chat = ({ chat }) => {
-  return <div>{chat.text}</div>;
+  return <div>{chat.chatId}</div>;
 };
 export default Chat;
